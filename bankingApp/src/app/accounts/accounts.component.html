@@ -1,0 +1,59 @@
+<div class="row">
+  <!-- we can also use more enhancement using CSS and bootstrap for style and rich UI look and feel as per requirements -->
+  <div class="col-lg-12">
+    <div class="content accountList">
+      <div class="col-md-12 pageTitle">
+        Account List
+      </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Account Number</th>
+            <th>Account Type</th>
+            <th>Balance</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let account of accounts">
+            <td>{{ account.account_number }}</td>
+            <td>{{ account.account_type }}</td>
+            <td>ZAR {{ account.balance }}</td>
+            <td><button [ngClass]="account.cssClass" (click)="withdraw($event,account)" type="button"
+                [disabled]=account.isDisabled>Withdraw</button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2"><label>Balance</label></td>
+
+            <td colspan="2"><label>ZAR {{totalBalance}}</label></td>
+          </tr>
+        </tfoot>
+      </table>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom alert (Withdrawl request successful) used insted of (localhost:4200 says) -->
+<div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="modalSuccessLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalSuccessLabel">Success</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Withdrawl request successful.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
